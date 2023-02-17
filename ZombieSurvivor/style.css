@@ -1,6 +1,6 @@
 #mob, #human, #boss1 {height: 100px;width: 100px; margin: 300px; position: absolute;left: 50px; top: 50px; visibility: hidden;};
 #mob {background-color: red}
 #human {background-color: blue; visibility: hidden;}
-body {max-height: 800px;max-width: 1200px;}
+body {max-height: 860px;max-width: 860px;}
 #boss1 {background-color: aqua;visibility: hidden;} 
 #scoreBox {height: 10; width: 10px;visibility: hidden;}

@@ -6,8 +6,6 @@ const scoreBox = document.getElementById("scoreBox");
 let score = 0;
 const runaway = () => {human.style.visibility= "hidden";};
 
-const humanRun = setTimeout(runaway,3000);
-
 
 // Intro
 
@@ -40,7 +38,7 @@ mob.addEventListener("click",()=>{
 // Random Formula
 
 const randomNumber = (num) => {
-    return Math.floor((Math.random()*1000)+1);
+    return Math.floor((Math.random()*400)+1);
 };
 
 // console.log(randomNumber);
@@ -48,8 +46,8 @@ const randomNumber = (num) => {
 const newZombie = () => {
     const currentWidth = window.innerWidth;
     const currentHeight = window.innerHeight;
-    mob.style.top=randomNumber(currentWidth)+"px";
-    mob.style.left=randomNumber(currentHeight)+"px";
+    mob.style.top=randomNumber()+"px" ;
+    mob.style.left=randomNumber()+"px";
     document.body.appendChild(mob);
     human.style.visibility="visible";
     newHuman();
@@ -67,10 +65,11 @@ human.addEventListener("click",()=>{
 
 
 const newHuman = () => {
+    const humanRun = setTimeout(runaway,3000);
     const currentWidth = window.innerWidth;
     const currentHeight = window.innerHeight;
-    human.style.top=randomNumber(currentWidth)+"px";
-    human.style.left=randomNumber(currentHeight)+"px";
+    human.style.top=randomNumber()+"px" ;
+    human.style.left=randomNumber()+"px";
     document.body.appendChild(human);
 
 };
