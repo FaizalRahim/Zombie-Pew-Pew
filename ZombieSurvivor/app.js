@@ -1,20 +1,36 @@
 // Global const
+const start = document.getElementById("start")
 const mob = document.getElementById("mob");
 const human = document.getElementById("human");
 human.attributes
+
+// Intro
+
+start.addEventListener("click",()=>{
+    playerName();
+    mob.style.visibility="visible";
+});
+
+let playerName =() => {
+    let score = 0;
+    prompt("Please tell us your name, so we can prepare the tombstone.");
+    localStorage.setItem(playerName,score);
+    start.style.visibility ="hidden";
+
+};
 
 // Kill Zombie
 
 mob.addEventListener("click",()=>{ 
     newZombie();
     human.style.visibility="visible";
-})
+});
 
 // Random Formula
 
 const randomNumber = (num) => {
     return Math.floor((Math.random()*1000)+1);
-}
+};
 
 console.log(randomNumber);
 
@@ -24,7 +40,7 @@ const newZombie = () => {
     mob.style.top=randomNumber(currentWidth)+"px";
     mob.style.left=randomNumber(currentHeight)+"px";
     document.body.appendChild(mob);
-}
+};
 
 // Save human
 
