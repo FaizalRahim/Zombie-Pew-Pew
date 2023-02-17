@@ -9,6 +9,7 @@ human.attributes
 start.addEventListener("click",()=>{
     playerName();
     mob.style.visibility="visible";
+    
 });
 
 let playerName =() => {
@@ -23,7 +24,6 @@ let playerName =() => {
 
 mob.addEventListener("click",()=>{ 
     newZombie();
-    human.style.visibility="visible";
 });
 
 // Random Formula
@@ -32,7 +32,7 @@ const randomNumber = (num) => {
     return Math.floor((Math.random()*1000)+1);
 };
 
-console.log(randomNumber);
+// console.log(randomNumber);
 
 const newZombie = () => {
     const currentWidth = window.innerWidth;
@@ -40,14 +40,20 @@ const newZombie = () => {
     mob.style.top=randomNumber(currentWidth)+"px";
     mob.style.left=randomNumber(currentHeight)+"px";
     document.body.appendChild(mob);
+    human.style.visibility="visible";
+    newHuman();
 };
 
 // Save human
 
 human.addEventListener("click",()=>{ 
     newHuman();
+    setInterval(runaway(),3000)
 })
 
+const runaway = () => {
+    human.style.visibility="hidden";
+    };
 
 const newHuman = () => {
     const currentWidth = window.innerWidth;
@@ -55,4 +61,6 @@ const newHuman = () => {
     human.style.top=randomNumber(currentWidth)+"px";
     human.style.left=randomNumber(currentHeight)+"px";
     document.body.appendChild(human);
-}
+    
+};
+
