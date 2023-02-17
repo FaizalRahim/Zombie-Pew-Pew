@@ -1,21 +1,30 @@
-// Global const
+// Global 
 const start = document.getElementById("start")
 const mob = document.getElementById("mob");
 const human = document.getElementById("human");
-human.attributes
+const scoreBox = document.getElementById("scoreBox");
+let score = 0;
+const runaway = () => {human.style.visibility= "hidden";};
+
+const humanRun = setTimeout(runaway,3000);
+
 
 // Intro
 
 start.addEventListener("click",()=>{
     playerName();
     mob.style.visibility="visible";
+    scoreBox.style.visibility="visible";
+    
+    score.innerHTML= "Score : " & score
+    
     
 });
 
 let playerName =() => {
-    let score = 0;
-    prompt("Please tell us your name, so we can prepare the tombstone.");
-    localStorage.setItem(playerName,score);
+    
+    let name= prompt("Please tell us your name, so we can prepare the tombstone.");
+    localStorage.setItem(name,score);
     start.style.visibility ="hidden";
 
 };
@@ -24,6 +33,8 @@ let playerName =() => {
 
 mob.addEventListener("click",()=>{ 
     newZombie();
+    score ++;
+    scoreBox.innerHTML= "Score : " + score;
 });
 
 // Random Formula
@@ -48,12 +59,12 @@ const newZombie = () => {
 
 human.addEventListener("click",()=>{ 
     newHuman();
-    setInterval(runaway(),3000)
+    runaway();
+    score -= 1;
+    scoreBox.innerHTML="Score : " + score;
 })
 
-const runaway = () => {
-    human.style.visibility="hidden";
-    };
+
 
 const newHuman = () => {
     const currentWidth = window.innerWidth;
@@ -61,6 +72,6 @@ const newHuman = () => {
     human.style.top=randomNumber(currentWidth)+"px";
     human.style.left=randomNumber(currentHeight)+"px";
     document.body.appendChild(human);
-    
+
 };
 
