@@ -5,27 +5,21 @@ const human = document.getElementById("human");
 const scoreBox = document.getElementById("scoreBox");
 let score = 0;
 const runaway = () => {human.style.visibility= "hidden";};
+const player = document.getElementById("player");
+
 
 
 // Intro
 
 start.addEventListener("click",()=>{
-    playerName();
+    alert("Click on the zombies to kill them, avoid clicking on the baby! For each zombie killed, you will get 1 point and for each baby you click, you lose 1 point. Get 10 points to win.")
+    start.style.visibility ="hidden";
     mob.style.visibility="visible";
-    scoreBox.style.visibility="visible";
-    
+    scoreBox.style.visibility="visible";    
     score.innerHTML= "Score : " & score
-    
-    
+ 
 });
 
-let playerName =() => {
-    
-    let name= prompt("Please tell us your name, so we can prepare the tombstone.");
-    localStorage.setItem(name,score);
-    start.style.visibility ="hidden";
-
-};
 
 // Kill Zombie
 
@@ -33,6 +27,12 @@ mob.addEventListener("click",()=>{
     newZombie();
     score ++;
     scoreBox.innerHTML= "Score : " + score;
+    if(score>= 10) {
+        let name= prompt("Please tell us your name");  
+        scoreBox.innerHTML= name + " win !!!";
+        mob.style.visibility="hidden";
+        // Level2();
+    };
 });
 
 // Random Formula
@@ -51,9 +51,10 @@ const newZombie = () => {
     document.body.appendChild(mob);
     human.style.visibility="visible";
     newHuman();
+    
 };
 
-// Save human
+// A wild human appears
 
 human.addEventListener("click",()=>{ 
     newHuman();
@@ -73,4 +74,40 @@ const newHuman = () => {
     document.body.appendChild(human);
 
 };
+
+// Level 2
+
+const Level2 = () => {
+document.body.removeChild(mob);
+document.body.removeChild(human);
+player.style.visibility="visible";
+};
+
+
+console.log(player);
+
+//Move player
+
+player.addEventListener("keydown",(event)=>{
+    let playerY = parseInt(player.style.top);
+    let playerX = parseInt(player.style.left);
+    switch (event.key){
+        case("ArrowDown"):
+        playerY += 10;
+        player.style.top = playerY + "px"
+        break;
+        case("ArrowUp"):
+        playerY -= 10;
+        player.style.top = playerY + "px"
+        break;
+        case("ArrowLeft"):
+        playerX += 10;
+        player.style.left = playerX + "px"
+        break;
+        case("ArrowRight"):
+        playerX -= 10;
+        player.style.left = playerX + "px"
+        break;            
+    }
+});
 
