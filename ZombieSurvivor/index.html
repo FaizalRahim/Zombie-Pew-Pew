@@ -8,15 +8,23 @@
     <script defer src="app.js"></script>
     <link href="style.css" rel="stylesheet">
 </head>
-<h1 Strong>Zombie Survivor..........</h1>
-<div id="scoreBox" >Score: 0</div>
-<button id="start">Start Game</button>
+<span id="gameStart">
+    <h1 id ="title" Strong>Zombie Survivor..........</h1>
+    <button id="start">Start Game</button>
+</span>
+
+<span id="scoreBox" >
+    <span id="bullets"> Bullets: 15</span>
+    <span id="hp"> HP: 15</span>
+    <span id="playerScore">Score: 0</span>
+
+</span>
 <body>
 
-    <img id="grid" src="Lv1BG.jpeg">
+    <img id="background" src="Lv1BG.jpeg">
         <img id="mob" src="zombie.png"> </img>
         <img id="human" src="baby.png"></img>
-        <div id="player">player</div>
+        <!-- <div id="player"></div> -->
     </img>
 
 
