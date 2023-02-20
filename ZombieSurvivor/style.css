@@ -1,5 +1,5 @@
 #scoreBox {height: 10; width: 10px;visibility: hidden;}
-#mob, #human {height: 100px;width: 100px; margin: 300px; position: absolute;left: 50px; top: 50px; visibility: hidden;};
+#mob,#mob2,#mob3,#mob4,#cat, #owl, #snake, #sheep {height: 100px;width: 100px; margin: 300px; position: absolute;left: 50px; top: 50px; visibility: hidden;};
 /* #mob {background-color: aquamarine;} */
 body {max-height: 860px;max-width: 860px;}
 /* #player {height: 100px; width: 100px; margin: 100px; position: absolute; left: 50px; top: 50px; background-color: green;visibility: hidden;}  */
