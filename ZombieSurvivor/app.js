@@ -94,25 +94,25 @@ const newCat = () => {
 
 const newOwl = () => {
     if(level >=5){
-    cat.style.visibility= "visible";
-    cat.style.top=randomNumber()+"px" ;
-    cat.style.left=randomNumber()+"px";
+    owl.style.visibility= "visible";
+    owl.style.top=randomNumber()+"px" ;
+    owl.style.left=randomNumber()+"px";
     }
 };
 
 const newSnake = () => {
     if(level >=10){
-    cat.style.visibility= "visible";
-    cat.style.top=randomNumber()+"px" ;
-    cat.style.left=randomNumber()+"px";
+    snake.style.visibility= "visible";
+    snake.style.top=randomNumber()+"px" ;
+    snake.style.left=randomNumber()+"px";
     }
 };
 
 const newSheep = () => {
     if(level >=13){
-    cat.style.visibility= "visible";
-    cat.style.top=randomNumber()+"px" ;
-    cat.style.left=randomNumber()+"px";
+    sheep.style.visibility= "visible";
+    sheep.style.top=randomNumber()+"px" ;
+    sheep.style.left=randomNumber()+"px";
     }
 };
 
@@ -183,7 +183,9 @@ document.addEventListener("click",()=>{
     }else if (bullets<0){
         let name= prompt("Please tell us your name");  
         alert(name + " became lunch at level "+ level+ " !!!");
+        record();
     }
+    console.log(scoreBoard());
 });
 
 levelUp =()=> {
@@ -216,6 +218,19 @@ levelUp =()=> {
     if(catSpawn<=0){
         let name= prompt("Please tell us your name");
         alert(name + " survived !!!");
+        record();
+        };
+        console.log(scoreBoard());
     };
 
-}
+
+scoreBoard=()=>{
+    localStorage.getItem("PlayerName");
+    localStorage.getItem("Points");
+    localStorage.getItem("Levels");
+};
+record=()=>{
+    localStorage.setItem("PlayerName",name);
+    localStorage.setItem("Points",score);
+    localStorage.setItem("Levels",level);
+} ;
