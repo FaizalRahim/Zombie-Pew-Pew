@@ -5,17 +5,17 @@ const human = document.getElementById("human");
 
 // Game variables
 const playerScore= document.getElementById("playerScore");
-const hp = document.getElementById("hp");
-let playerhp = 15;
-const runaway = () => {
-    human.style.visibility= "hidden";
+// const hp = document.getElementById("hp");
+// let playerhp = 15;
+// const runaway = () => {
+//     human.style.visibility= "hidden";
 
-};
-const attack = () => {
-    mob.style.visibility= "hidden";
-    playerhp --;
-    hp.innerHTML= "HP : " + playerhp;
-};
+// };
+// const attack = () => {
+//     mob.style.visibility= "hidden";
+//     playerhp --;
+//     hp.innerHTML= "HP : " + playerhp;
+// };
 const player = document.getElementById("player");
 let score = 0;
 const bullet = document.getElementById("bullets")
@@ -95,11 +95,12 @@ document.addEventListener("click",()=>{
     bullet.innerHTML= "Bullets : " + bullets;
     if(bullets>0 && score>= 10) {
         let name= prompt("Please tell us your name");  
-        scoreBox.innerHTML= name + " survived !!!";
+        alert(name + " survived !!!");
         // Level2();
     }else if (bullets<1){
         let name= prompt("Please tell us your name");  
-        scoreBox.innerHTML= name + " became lunch !!!";
+        alert(name + " became lunch !!!");
+
 
     }
 });
