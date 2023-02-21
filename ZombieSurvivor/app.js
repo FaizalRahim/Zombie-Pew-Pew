@@ -55,7 +55,7 @@ const randomNumber = (num) => {
 
 // Generate npcs
 const newZombie = () => {
-    mob.style.visibility= "visible";
+    mob.style.visibility= "visible"; 
     mob.style.top=randomNumber()+"px" ;
     mob.style.left=randomNumber()+"px";
 
@@ -132,21 +132,25 @@ setInterval(newSheep,sheepSpawn);
 
 mob.addEventListener("click",()=>{ 
     score ++;
+    mob.style.visibility="hidden";
     playerScore.innerHTML= "Score : " + score;
 });
 
 mob2.addEventListener("click",()=>{ 
     score +=2;
+    mob2.style.visibility="hidden";
     playerScore.innerHTML= "Score : " + score;
 });
 
 mob3.addEventListener("click",()=>{ 
     score +=3;
+    mob3.style.visibility="hidden";
     playerScore.innerHTML= "Score : " + score;
 });
 
 mob4.addEventListener("click",()=>{ 
     score +=5;
+    mob4.style.visibility="hidden";
     playerScore.innerHTML= "Score : " + score;
 });
 
@@ -154,25 +158,29 @@ mob4.addEventListener("click",()=>{
 
 cat.addEventListener("click",()=>{ 
     score --;
+    cat.style.visibility="hidden";
     playerScore.innerHTML="Score : " + score;
 })
 
 owl.addEventListener("click",()=>{ 
     score -=2;
+    owl.style.visibility="hidden";
     playerScore.innerHTML="Score : " + score;
 })
 
 snake.addEventListener("click",()=>{ 
     score -=3;
+    snake.style.visibility="hidden";
     playerScore.innerHTML="Score : " + score;
 })
 
 sheep.addEventListener("click",()=>{ 
     score -=5;
+    sheep.style.visibility="hidden";
     playerScore.innerHTML="Score : " + score;
 })
 
-// Dont randomly click
+// Dont randomly click and lose condition
 
 document.addEventListener("click",()=>{ 
 
@@ -181,14 +189,16 @@ document.addEventListener("click",()=>{
     if(bullets>=0 && score>= goal) {
         levelUp();
 
-    }else if (bullets<0 ){
+    }else if (bullets<=0 ){
         let name= prompt("Please tell us your name");  
         alert(name + " became lunch at level "+ level+ " !!!");
-        record();
+        localStorage.setItem("PlayerName",name);
+        localStorage.setItem("Points",score);
+        localStorage.setItem("Levels",level);
     }
 });
 
-//level Up mechanics
+//level Up mechanics and win mechanic
 
 levelUp =()=> {
 level++;
@@ -221,18 +231,10 @@ switch(level){
 if(catSpawn<=0){
 let name= prompt("Please tell us your name");
     alert(name + " survived !!!");
-    record();
+    localStorage.setItem("PlayerName",name);
+    localStorage.setItem("Points",score);
+    localStorage.setItem("Levels",level);
     };
 };
 
 
-scoreBoard=()=>{
-localStorage.getItem("PlayerName");
-localStorage.getItem("Points");
-localStorage.getItem("Levels");
-};
-record=()=>{
-localStorage.setItem("PlayerName",name);
-localStorage.setItem("Points",score);
-localStorage.setItem("Levels",level);
-} ;
