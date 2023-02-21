@@ -29,10 +29,11 @@ let sheepSpawn = 400;
 
 
 
+
 // Intro
 
 start.addEventListener("click",()=>{
-    alert("Click on the zombies to kill them, avoid clicking on the wildlife! For each zombie killed, you will get points and for each wildlife you click, you lose points. Get 10 points to proceed to next level.")
+    alert("Click on the zombies to kill them, avoid clicking on the wildlife! For each zombie killed, you will get points and for each wildlife you click, you lose points. Get 10 points to proceed to next level. Do remeber not to waste bullets, or else you will end up as lunch.")
     score = 0;
     bullets = 16;
     level =1;
@@ -47,7 +48,7 @@ start.addEventListener("click",()=>{
 // Random Formula
 
 const randomNumber = (num) => {
-    return Math.floor((Math.random()*400)+1);
+    return Math.floor((Math.random()*800)+1);
 };
 
 // console.log(randomNumber);
@@ -180,57 +181,58 @@ document.addEventListener("click",()=>{
     if(bullets>=0 && score>= goal) {
         levelUp();
 
-    }else if (bullets<0){
+    }else if (bullets<0 ){
         let name= prompt("Please tell us your name");  
         alert(name + " became lunch at level "+ level+ " !!!");
         record();
     }
-    console.log(scoreBoard());
 });
 
+//level Up mechanics
+
 levelUp =()=> {
-    level++;
-    goal +=10;
-    bullets +=15;
-    lv.innerHTML = "Level: "+ level;
-    mobSpawn -= 100;
-    catSpawn -=100;
-    switch(level){
-        case(level>=13):
-        mob2Spawn -= 100;
-        mob3Spawn -= 100;
-        mob4Spawn -= 100;
-        owlSpawn -=100;
-        snakeSpawn -=100;
-        sheepSpawn -= 100;
-        break;
-        case(level>=10):
-        mob2Spawn -= 100;
-        mob3Spawn -= 100;
-        owlSpawn -=100;
-        snakeSpawn -=100;
-        break;
-        case(level>=5):
-        mob2Spawn -= 100;
-        owlSpawn -=100;
-        break;
+level++;
+goal +=10;
+bullets +=15;
+bullet.innerHTML= "Bullets: " + bullets;
+lv.innerHTML = "Level: "+ level;
+mobSpawn -= 100;
+catSpawn -=100;
+switch(level){
+    case(level>=13):
+    mob2Spawn -= 100;
+    mob3Spawn -= 100;
+    mob4Spawn -= 100;
+    owlSpawn -=100;
+    snakeSpawn -=100;
+    sheepSpawn -= 100;
+    break;
+    case(level>=10):
+    mob2Spawn -= 100;
+    mob3Spawn -= 100;
+    owlSpawn -=100;
+    snakeSpawn -=100;
+    break;
+    case(level>=5):
+    mob2Spawn -= 100;
+    owlSpawn -=100;
+    break;
+};
+if(catSpawn<=0){
+let name= prompt("Please tell us your name");
+    alert(name + " survived !!!");
+    record();
     };
-    if(catSpawn<=0){
-        let name= prompt("Please tell us your name");
-        alert(name + " survived !!!");
-        record();
-        };
-        console.log(scoreBoard());
-    };
+};
 
 
 scoreBoard=()=>{
-    localStorage.getItem("PlayerName");
-    localStorage.getItem("Points");
-    localStorage.getItem("Levels");
+localStorage.getItem("PlayerName");
+localStorage.getItem("Points");
+localStorage.getItem("Levels");
 };
 record=()=>{
-    localStorage.setItem("PlayerName",name);
-    localStorage.setItem("Points",score);
-    localStorage.setItem("Levels",level);
+localStorage.setItem("PlayerName",name);
+localStorage.setItem("Points",score);
+localStorage.setItem("Levels",level);
 } ;

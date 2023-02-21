@@ -1,5 +1,6 @@
-#scoreBox {height: 10; width: 10px;visibility: hidden;}
+#scoreBox {height: 10px; width: 10px;visibility: hidden;}
 #mob,#mob2,#mob3,#mob4,#cat, #owl, #snake, #sheep {height: 100px;width: 100px; margin: 300px; position: absolute;left: 50px; top: 50px; visibility: hidden;};
 body {max-height: 860px;max-width: 860px;}
-.scoreBox{justify-content: space-evenly; }
-#background {align-self: stretch;}
+#scoreBox{justify-content: space-evenly; align-items: baseline }
+#background {align-self: center;}
+#start, #bullets, #lv, #playerScore { font-size: larger;}
