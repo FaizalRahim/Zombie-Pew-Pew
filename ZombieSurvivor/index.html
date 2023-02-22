@@ -10,13 +10,24 @@
 </head>
 <span id="gameStart">
     <h1 id ="title" Strong>Zombie Survivor..........</h1>
-    <button id="start">Start Game</button>
+    
 </span>
+<!-- <div id="tutorial">Click on the zombies to kill them, avoid clicking on the wildlife! For each zombie killed, you will get points and for each wildlife you click, you lose points. Get 10 points to proceed to next level. Do remeber not to waste bullets, or else you will end up as lunch.
 
+Start by inputing your name below, so that we can prepare the tombstone in advance.
+</div> -->
 <span id="scoreBox" >
-    <span id="bullets"></span>
-    <span id="playerScore"></span>
-    <span id="lv"></span>
+    <span id="bullets">Bullets: 15</span>
+    <span id="playerScore"> Score: 0</span>
+    <span id="lv">Level: Game Lobby</span>
+    <button id="start">Start Game</button>
+
+    <div>
+    <span id="win"></span>
+    <input id="name" placeholder =" Enter your name">
+    <button id="enter">Enter</button>
+    </div>
+    
 
 </span>
 <body>
@@ -32,6 +43,8 @@
         <img id="owl" src="owl.png"></img>
         <!-- Images from https://www.flaticon.com/authors/smashicons -->
     </img>
+    <li id="header"> Player Name, Level Died, Score</li>
+    <li id="highScore"></li>
 </div>
 
 </body>
