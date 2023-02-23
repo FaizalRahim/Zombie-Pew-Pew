@@ -1,6 +1,19 @@
 
 #mob,#mob2,#mob3,#mob4,#cat, #owl, #snake, #sheep {height: 100px;width: 100px; margin: 300px; position: absolute;left: 50px; top: 50px; visibility: hidden;};
 body {max-height: 860px;max-width: 860px;}
-#start, #bullets, #lv, #playerScore, #name, #enter, #win { font-size: larger;}
+#start, #bullets, #lv, #playerScore, #name, #enter, #win ,#goal,{ font-size: larger;}
 /* #top10Players { visibility: visible;} */
-#bullets, #lv, #playerScore,#name, #enter, #win ,#highScore {display:none}
+#goal,#bullets, #lv, #playerScore,#name, #enter, #win ,#highScore {display:none}
+
+/* #background {
+    top: 100;
+    left: 100;
+    width: 80%;
+    height: 80%;
+  };
+
+  #scoreBox {
+    float: right;
+    width: 20%;
+  }; */
+

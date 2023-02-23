@@ -2,16 +2,22 @@
 
 //start labels
 const start = document.getElementById("start")
-const playerScore= document.getElementById("playerScore");
-const bullet = document.getElementById("bullets");
-const lv = document.getElementById("lv");
-const playerName = document.getElementById("name");
 const background = document.getElementById("background");
-const message = document.getElementById("win");
-const enter = document.getElementById("enter");
 const highScoreList = document.getElementById("highScore");
 const highScores = JSON.parse(localStorage.getItem('highScores'))|| [];
 
+const startLabels = {
+    playerScore: document.getElementById("playerScore"),
+    bullet: document.getElementById("bullets"),
+    lv: document.getElementById("lv"),
+    goals: document.getElementById("goal"),
+};
+
+const endLabels = {
+    playerName: document.getElementById("name"),
+    message: document.getElementById("win"),
+    enter: document.getElementById("enter"),
+};
 
 //npcs
 const npcs = [{npc: document.getElementById("mob"), baseRate: 1600,points: 1, levelAppear: 1},
@@ -22,14 +28,6 @@ const npcs = [{npc: document.getElementById("mob"), baseRate: 1600,points: 1, le
 {npc: document.getElementById("owl"), baseRate: 1000,points: -2, levelAppear: 5},
 {npc: document.getElementById("snake"), baseRate: 750,points: -3, levelAppear: 10},
 {npc: document.getElementById("sheep"), baseRate: 500,points: -5, levelAppear: 13},]
-
-//start
-
-
-let level = 1;
-let score = 0;
-let bullets = 16;
-let goal = level*10;
 
 
 //? functions
@@ -43,7 +41,7 @@ kill= (npc,points) =>{
     npc.addEventListener("click",()=>{ 
         score += points;
         npc.style.visibility="hidden";
-        playerScore.innerHTML="Score : " + score;
+        scoreBoard();
     });
 };
 
@@ -59,31 +57,26 @@ newNpc = (levelAppear,npc) => {
 
 ammo = () => {
     document.addEventListener('click',()=>{
-    bullet.min= 0;
     bullets --;
-    bullet.innerHTML= "Bullets: " + Math.max(bullet.min,bullets);})
+    scoreBoard();})
 };
 
 win = () => {(document.addEventListener("click",()=>{ 
       if(bullets>=0 && score>= goal) {
         levelUp();
     }else if (bullets<=0 ){
-    message.innerHTML= ( "You became lunch at level "+ level+ " !!! Enter your name to save your score.");
-    message.style.display="inline";
-    playerName.style.display="inline";
-    enter.style.display="inline";
-    for(let i =0; i< npcs.length; i++){
-        npcs[i].npc.style.display="none"
-    };
-    background.style.display="none";
+    endLabels.message.innerHTML= ( "You became lunch at level "+ level+ " !!! Enter your name to save your score.");
+    endLabel("inline")
+    backgroundSwitch("none");
+
 }}))};
 
 levelUp =()=> {
     level++;
     goal +=10;
     bullets +=15;
-    bullet.innerHTML= "Bullets: " + bullets;
-    lv.innerHTML = "Level: "+ level;
+    scoreBoard();
+
     };
     
 
@@ -96,15 +89,49 @@ saveHighScore=(playerName,endedAtLevel,playerScore)=>{
 displayHighScores = ()=> {
     highScores.sort((a,b)=> b.playerScore-a.playerScore);
     highScoreList.style.display="block";
-    highScoreList.innerHTML = ``;
+    highScoreList.innerHTML = `Rank,Player Name,Level,Score`;
     for(let i=0;i<Math.min(highScores.length,10);i++){
         const scoreItem = document.createElement(`li`);
-        scoreItem.textContent = `${highScores[i].playerName} , level ${highScores[i].endedAtLevel}, score ${highScores[i].playerScore}`;
+        scoreItem.textContent = `${i+1},${highScores[i].playerName} , level ${highScores[i].endedAtLevel}, score ${highScores[i].playerScore}`;
         highScoreList.appendChild(scoreItem);
     }
 }
+backgroundSwitch= (status)=> {
+    for(let i =0; i< npcs.length; i++){
+        npcs[i].npc.style.display=status
+    };
+    background.style.display=status;
+};
 
-//? for .... loop
+endLabel= (status)=> {
+    Object.keys(endLabels).forEach((key)=>{
+        endLabels[key].style.display=status;
+    })
+};
+
+startLabel= (status)=> {
+    Object.keys(startLabels).forEach((key)=>{
+        startLabels[key].style.display=status;
+    })
+};
+
+scoreBoard=()=>{
+    startLabels.bullet.min= 0;
+    startLabels.bullet.innerHTML="Bullets: "+ Math.max(startLabels.bullet.min,bullets);
+    startLabels.lv.innerHTML = "Level: "+ level;
+    startLabels.playerScore.innerHTML="Score : " + score;
+    startLabels.goals.innerHTML="Target Score to Level Up: " + goal;
+};
+
+//Game Lobby
+
+
+let level = 1;
+let score = 0;
+let bullets = 15;
+let goal = level*10;
+backgroundSwitch("none");
+
 
 //start game
 
@@ -112,22 +139,13 @@ start.addEventListener("click",()=>{
     level = 1;
     score = 0;
     bullets= 16;
-    message.style.display="none";
-    playerName.style.display="none";
-    enter.style.display="none";
-    start.style.display="block";
-    bullet.style.display="block";
-    lv.style.display="block";
-    playerScore.style.display="block";
+    goal = level*10;
+    endLabel("none");
+    startLabel("block");
+    scoreBoard();
     start.innerHTML ="Restart Game";
-    bullet.innerHTML="Bullets: "+ bullets;
-    lv.innerHTML = "Level: "+ level;
-    playerScore.innerHTML="Score : " + score;
-    for(let i =0; i< npcs.length; i++){
-        npcs[i].npc.style.display="block"
-    };
-    background.style.display="block";
-    
+    backgroundSwitch("block");
+
 });
 
 //npc generation
