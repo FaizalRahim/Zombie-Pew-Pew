@@ -92,10 +92,10 @@ saveHighScore=(playerName,endedAtLevel,playerScore)=>{
 displayHighScores = ()=> {
     highScores.sort((a,b)=> b.playerScore-a.playerScore);
     highScoreList.style.display="block";
-    highScoreList.innerHTML = `Top 5 Players`;
-    for(let i=0;i<Math.min(highScores.length,5);i++){
+    highScoreList.innerHTML = `Top 10 Players`;
+    for(let i=0;i<Math.min(highScores.length,10);i++){
         const scoreItem = document.createElement(`li`);
-        scoreItem.textContent = `${i+1} ${highScores[i].playerName} level ${highScores[i].endedAtLevel} score ${highScores[i].playerScore}`;
+        scoreItem.textContent = `${i+1}) ${highScores[i].playerName} level ${highScores[i].endedAtLevel} score ${highScores[i].playerScore}`;
         highScoreList.appendChild(scoreItem);
     }
 }
@@ -123,7 +123,7 @@ scoreBoard=()=>{
     startLabels.bullet.innerHTML="Bullets: "+ Math.max(startLabels.bullet.min,bullets);
     startLabels.lv.innerHTML = "Level: "+ level;
     startLabels.playerScore.innerHTML="Score : " + score;
-    startLabels.goals.innerHTML="Target Score to Level Up: " + goal;
+    startLabels.goals.innerHTML="Score to level up: " + goal;
 };
 
 //Game Lobby
@@ -173,16 +173,23 @@ for(let i=0; i<npcs.length;i++){
 // win condition
 win();
 
-//Enter name
+//Enter name and restart game
 
 enter.addEventListener("click",()=>{
     const playName = endLabels.playerName.value;
-    endLabels.message.innerHTML= (endLabels.playerName.value + "'s score has been recorded !!!");
     saveHighScore(endLabels.playerName.value,level,score);
-    displayHighScores(endLabels.playerName.value,level,score);
     displayHighScores();
+    level = 1;
+    score = 0;
+    bullets= 16;
+    goal = level*10;
+    endLabel("none");
+    startLabel("block");
+    scoreBoard();
+    start.innerHTML ="Restart Game";
+    backgroundSwitch("block");
+    
 });
 
-//Display Highscore
 
 
