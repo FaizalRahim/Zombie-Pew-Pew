@@ -45,14 +45,17 @@ kill= (npc,points) =>{
     });
 };
 
-randomNumber = () => {
-    return Math.floor((Math.random()*800)+1)};
+randomTopNumber = () => {
+    return Math.floor((Math.random()*550)+150)};
+
+randomLeftNumber = () => {
+    return Math.floor((Math.random()*780)+250)};
 
 newNpc = (levelAppear,npc) => {
     if(level >=levelAppear){
     npc.style.visibility= "visible";
-    npc.style.top=randomNumber()+"px" ;
-    npc.style.left=randomNumber()+"px";
+    npc.style.top=randomTopNumber()+"px" ;
+    npc.style.left=randomLeftNumber()+"px";
     }};
 
 ammo = () => {
@@ -65,7 +68,7 @@ win = () => {(document.addEventListener("click",()=>{
       if(bullets>=0 && score>= goal) {
         levelUp();
     }else if (bullets<=0 ){
-    endLabels.message.innerHTML= ( "You became lunch at level "+ level+ " !!! Enter your name to save your score.");
+    endLabels.message.innerHTML= ( "Game Over !!! Enter your name to save your score.");
     endLabel("inline")
     backgroundSwitch("none");
 
@@ -89,10 +92,10 @@ saveHighScore=(playerName,endedAtLevel,playerScore)=>{
 displayHighScores = ()=> {
     highScores.sort((a,b)=> b.playerScore-a.playerScore);
     highScoreList.style.display="block";
-    highScoreList.innerHTML = `Rank,Player Name,Level,Score`;
-    for(let i=0;i<Math.min(highScores.length,10);i++){
+    highScoreList.innerHTML = `Top 5 Players`;
+    for(let i=0;i<Math.min(highScores.length,5);i++){
         const scoreItem = document.createElement(`li`);
-        scoreItem.textContent = `${i+1},${highScores[i].playerName} , level ${highScores[i].endedAtLevel}, score ${highScores[i].playerScore}`;
+        scoreItem.textContent = `${i+1} ${highScores[i].playerName} level ${highScores[i].endedAtLevel} score ${highScores[i].playerScore}`;
         highScoreList.appendChild(scoreItem);
     }
 }
@@ -131,6 +134,7 @@ let score = 0;
 let bullets = 15;
 let goal = level*10;
 backgroundSwitch("none");
+displayHighScores();
 
 
 //start game
@@ -172,12 +176,13 @@ win();
 //Enter name
 
 enter.addEventListener("click",()=>{
-    const playName = playerName.value;
-    message.innerHTML= ( playerName.value + "'s score has been recorded !!!");
-    saveHighScore(playerName.value,level,score);
-    displayHighScores(playerName.value,level,score);
+    const playName = endLabels.playerName.value;
+    endLabels.message.innerHTML= (endLabels.playerName.value + "'s score has been recorded !!!");
+    saveHighScore(endLabels.playerName.value,level,score);
+    displayHighScores(endLabels.playerName.value,level,score);
+    displayHighScores();
 });
 
 //Display Highscore
 
-displayHighScores();
+
