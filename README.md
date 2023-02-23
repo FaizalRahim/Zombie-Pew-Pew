@@ -1,6 +1,7 @@
 # My-Tech-Journey
 
 # Developing a zombie shooter game - Zombie Survivor
+ Link to the game : https://faizalrahim.github.io/My-Tech-Journey/
 
 ## Choice of game
 This is a a fun take on arcade shooter games where mobs appear randomly and the player has a split second to decide if its an enemy or a civilian.
