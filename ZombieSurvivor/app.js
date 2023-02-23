@@ -21,7 +21,7 @@ const endLabels = {
 
 //npcs
 const npcs = [{npc: document.getElementById("mob"), baseRate: 1600,points: 1, levelAppear: 1},
-{npc: document.getElementById("mob2"), baseRate: 1000,points: 2, levelAppear: 5},
+{npc: document.getElementById("mob2"), baseRate: 1000,points: 2, levelAppear: 2},
 {npc: document.getElementById("mob3"), baseRate: 750,points: 3, levelAppear: 10},
 {npc: document.getElementById("mob4"), baseRate: 500,points: 5, levelAppear: 13},
 {npc: document.getElementById("cat"), baseRate: 1600,points: -1, levelAppear: 1},
@@ -56,7 +56,9 @@ newNpc = (levelAppear,npc) => {
     npc.style.visibility= "visible";
     npc.style.top=randomTopNumber()+"px" ;
     npc.style.left=randomLeftNumber()+"px";
-    }};
+    }
+    else { npc.style.visibility="hidden"};
+};
 
 ammo = () => {
     document.addEventListener('click',()=>{
