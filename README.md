@@ -50,7 +50,6 @@ Once your bullets run out, you will see this screen and input your name.
 <img width="1423" alt="GameOver" src="https://user-images.githubusercontent.com/122983127/220835865-8737f171-32c2-4b7c-9874-2d3eb78a135b.png">
 
 Your name will be added and high score will be tabulated.
-HighScoreAddGameReset.png
 <img width="1423" alt="HighScoreAddGameReset" src="https://user-images.githubusercontent.com/122983127/220836169-7db0715c-4b8d-498e-84fa-ada8221875a2.png">
 
 
