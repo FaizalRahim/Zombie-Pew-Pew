@@ -1,4 +1,4 @@
-# My-Tech-Journey
+# Zombie-Pew-Pew
 
 # Developing a zombie shooter game - Zombie Survivor
  Link to the game : https://faizalrahim.github.io/My-Tech-Journey/
